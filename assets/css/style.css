@@ -71,6 +71,12 @@
   --fs-lead: clamp(1.1rem, 1.02rem + 0.35vw, 1.3rem);
   --fs-body: clamp(1rem, 0.97rem + 0.12vw, 1.075rem);
   --fs-small: 0.875rem;
+  --fs-display: clamp(2.4rem, 1.6rem + 3.2vw, 4.5rem); /* graduation + admission titles */
+  --fs-card-title: clamp(1.3rem, 1.22rem + 0.3vw, 1.5rem);
+  --fs-item-title: 1.2rem;
+  --fs-card: 1rem;
+  --fs-meta: 0.875rem;
+  --fs-label: 0.75rem;
 
   --container: 1280px;
   --gutter: clamp(20px, 4vw, 56px);
@@ -215,9 +221,9 @@ p {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 22px;
-  font-size: 0.78rem;
-  font-weight: 650;
+  margin-bottom: 20px;
+  font-size: var(--fs-label);
+  font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--violet);
@@ -1314,12 +1320,12 @@ body.menu-open {
 }
 
 .stage h3 {
-  font-size: var(--fs-h3);
-  margin-bottom: 12px;
+  font-size: var(--fs-card-title);
+  margin-bottom: 10px;
 }
 
 .stage p {
-  font-size: 0.98rem;
+  font-size: var(--fs-card);
   line-height: 1.6;
   opacity: 0.9;
 }
@@ -1426,7 +1432,7 @@ body.menu-open {
 .film figcaption b {
   display: block;
   font-family: var(--serif);
-  font-size: 1.45rem;
+  font-size: var(--fs-card-title);
   font-weight: 520;
   line-height: 1.15;
 }
@@ -1434,7 +1440,7 @@ body.menu-open {
 .film figcaption span {
   display: block;
   margin-top: 6px;
-  font-size: 0.85rem;
+  font-size: var(--fs-meta);
   color: rgba(255, 255, 255, 0.72);
 }
 
@@ -1465,7 +1471,7 @@ body.menu-open {
 
 .film-end p {
   font-family: var(--serif);
-  font-size: 1.6rem;
+  font-size: var(--fs-card-title);
   line-height: 1.2;
 }
 
@@ -1583,7 +1589,7 @@ body.menu-open {
   display: block;
   margin-top: 12px;
   font-style: normal;
-  font-size: 0.88rem;
+  font-size: var(--fs-meta);
   color: var(--ink-3);
 }
 
@@ -1634,7 +1640,7 @@ body.menu-open {
 }
 
 .grad-title .h2 {
-  font-size: clamp(2.4rem, 1.6rem + 3.2vw, 4.6rem);
+  font-size: var(--fs-display);
 }
 
 .grad-title .h2 em {
@@ -1715,7 +1721,7 @@ body.menu-open {
 
 .wall-card p {
   font-family: var(--serif);
-  font-size: clamp(1.35rem, 1.1rem + 0.8vw, 1.8rem);
+  font-size: clamp(1.35rem, 1.15rem + 0.6vw, 1.65rem);
   line-height: 1.2;
   font-weight: 460;
   letter-spacing: -0.015em;
@@ -1725,7 +1731,7 @@ body.menu-open {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-size: 0.85rem;
+  font-size: var(--fs-meta);
   font-weight: 600;
   color: var(--ink-2);
 }
@@ -1810,7 +1816,7 @@ body.menu-open {
 .bento .note b {
   font-family: var(--serif);
   font-weight: 500;
-  font-size: clamp(1.2rem, 1rem + 0.6vw, 1.55rem);
+  font-size: var(--fs-item-title);
   line-height: 1.2;
 }
 
@@ -1830,6 +1836,14 @@ body.menu-open {
   isolation: isolate;
 }
 
+.call .petal-field {
+  left: 52%;
+}
+
+.dyk .petal-field {
+  left: 50%;
+}
+
 .call-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
@@ -1838,7 +1852,7 @@ body.menu-open {
 }
 
 .call h2 {
-  font-size: clamp(2.4rem, 1.6rem + 3.4vw, 4.8rem);
+  font-size: var(--fs-display);
   font-weight: 500;
 }
 
@@ -2024,7 +2038,7 @@ body.menu-open {
 .footer-brand p {
   max-width: 24em;
   margin-top: 22px;
-  font-size: 0.96rem;
+  font-size: var(--fs-card);
 }
 
 .site-footer h4 {
@@ -2242,7 +2256,11 @@ body.menu-open {
 
 .prose .h2 {
   color: var(--ink);
-  margin-bottom: 6px;
+  margin-bottom: 4px;
+}
+
+.prose .kicker {
+  margin-bottom: 2px;
 }
 
 .photo {
@@ -2282,7 +2300,6 @@ body.menu-open {
 
 .photo-pair .photo:nth-child(2) {
   aspect-ratio: 4 / 4.6;
-  margin-bottom: -40px;
 }
 
 .tint-sun { background: var(--sun-tint); }
@@ -2331,13 +2348,13 @@ body.menu-open {
   display: block;
   margin-bottom: 4px;
   font-family: var(--serif);
-  font-size: 1.25rem;
-  font-weight: 540;
+  font-size: var(--fs-item-title);
+  font-weight: 560;
 }
 
 .crest-list p {
   color: var(--ink-2);
-  font-size: 0.98rem;
+  font-size: var(--fs-card);
 }
 
 /* affirmations */
@@ -2369,7 +2386,7 @@ body.menu-open {
   background: linear-gradient(0deg, rgba(29, 5, 25, 0.85), transparent);
   color: #fff;
   font-family: var(--serif);
-  font-size: 1.6rem;
+  font-size: var(--fs-card-title);
   font-style: italic;
 }
 
@@ -2377,6 +2394,7 @@ body.menu-open {
   display: grid;
   place-items: center;
   padding: 30px;
+  border-radius: var(--radius-lg);
   background: var(--sun);
   color: var(--plum-900);
   text-align: center;
@@ -2420,7 +2438,7 @@ body.menu-open {
 }
 
 .calendar time {
-  font-size: 0.8rem;
+  font-size: var(--fs-label);
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -2429,13 +2447,13 @@ body.menu-open {
 
 .calendar b {
   font-family: var(--serif);
-  font-weight: 540;
-  font-size: 1.3rem;
+  font-weight: 560;
+  font-size: var(--fs-item-title);
   line-height: 1.2;
 }
 
 .calendar p {
-  font-size: 0.95rem;
+  font-size: var(--fs-card);
   color: var(--ink-2);
 }
 
@@ -2483,7 +2501,7 @@ body.menu-open {
   border-radius: 999px;
   background: var(--c, var(--sun));
   color: var(--on, var(--plum-900));
-  font-size: 0.8rem;
+  font-size: var(--fs-label);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -2501,6 +2519,7 @@ body.menu-open {
   position: relative;
   padding-left: 34px;
   color: var(--ink-2);
+  font-size: var(--fs-body);
 }
 
 .ticks li::before {
@@ -2565,13 +2584,13 @@ body.menu-open {
 }
 
 .way h3 {
-  font-size: 1.35rem;
+  font-size: var(--fs-card-title);
   margin-bottom: 10px;
 }
 
 .way p {
   color: var(--ink-2);
-  font-size: 0.98rem;
+  font-size: var(--fs-card);
 }
 
 /* did you know */
@@ -2587,6 +2606,11 @@ body.menu-open {
   color: #fff;
   overflow: hidden;
   isolation: isolate;
+}
+
+.dyk > :not(.petal-field) {
+  position: relative;
+  z-index: 1;
 }
 
 .dyk > :not(.petal-field) {
@@ -2706,7 +2730,7 @@ body.menu-open {
 }
 
 .event time {
-  font-size: 0.82rem;
+  font-size: var(--fs-label);
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -2714,7 +2738,7 @@ body.menu-open {
 }
 
 .event h3 {
-  font-size: 1.6rem;
+  font-size: var(--fs-card-title);
   margin-bottom: 6px;
 }
 
@@ -2929,12 +2953,12 @@ body.menu-open {
 }
 
 .steps h3 {
-  font-size: 1.4rem;
+  font-size: var(--fs-card-title);
 }
 
 .steps p {
   color: var(--ink-2);
-  font-size: 0.98rem;
+  font-size: var(--fs-card);
 }
 
 .classes {
@@ -2952,8 +2976,8 @@ body.menu-open {
   background: var(--paper);
   list-style: none;
   font-family: var(--serif);
-  font-size: 1.3rem;
-  font-weight: 540;
+  font-size: var(--fs-item-title);
+  font-weight: 560;
 }
 
 .classes {
@@ -3101,7 +3125,7 @@ a.contact-card:hover {
 .contact-card small {
   display: block;
   margin-bottom: 2px;
-  font-size: 0.78rem;
+  font-size: var(--fs-label);
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -3110,7 +3134,7 @@ a.contact-card:hover {
 
 .contact-card b {
   font-weight: 650;
-  font-size: 1.05rem;
+  font-size: var(--fs-card);
 }
 
 .map {
@@ -3146,8 +3170,8 @@ a.contact-card:hover {
   cursor: pointer;
   list-style: none;
   font-family: var(--serif);
-  font-size: clamp(1.2rem, 1.1rem + 0.4vw, 1.45rem);
-  font-weight: 520;
+  font-size: var(--fs-item-title);
+  font-weight: 560;
 }
 
 .faq summary::-webkit-details-marker {
@@ -3594,6 +3618,21 @@ a.contact-card:hover {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .films-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .gallery {
+    columns: 2;
+    column-gap: 10px;
+  }
+
+  .gallery button {
+    margin-bottom: 10px;
+  }
+
   .film-grid .film:nth-child(n) {
     margin-top: 0;
   }
@@ -3639,9 +3678,6 @@ a.contact-card:hover {
     border-radius: 0;
   }
 
-  .photo-pair .photo:nth-child(2) {
-    margin-bottom: -24px;
-  }
 
   .lightbox {
     padding: 70px 14px;
