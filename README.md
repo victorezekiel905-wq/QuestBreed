@@ -11,7 +11,8 @@ Plain HTML, CSS and JavaScript with no build step. `index.html` is the home page
 | `index.html` | Home: video hero, classes, films, chess, graduation, campus, admissions |
 | `about.html` | Who we are, the crest, values, affirmations, school calendar |
 | `learning.html` | Creche, Pre-Nursery, Nursery, Primary, ways of learning, weekly facts |
-| `school-life.html` | Films, recent events, photo gallery with viewer |
+| `school-life.html` | Films, recent events, gallery preview |
+| `gallery.html` | Full photo gallery with filters and viewer |
 | `admissions.html` | Classes, steps to join, enquiry form, questions |
 | `contact.html` | Address, phones, WhatsApp, email, map, message form |
 | `404.html` | Page not found |

@@ -12,14 +12,9 @@ const SCHOOL = {
 
   /* ---------- Header ---------- */
   const header = document.querySelector(".site-header");
-  let lastY = window.scrollY;
+  // the bar is always white; it only gains a soft shadow once the page scrolls
   const onScrollHeader = () => {
-    const y = window.scrollY;
-    if (!header) return;
-    header.classList.toggle("is-solid", y > 40);
-    const goingDown = y > lastY && y > 700;
-    header.classList.toggle("is-hidden", goingDown && !document.body.classList.contains("menu-open"));
-    lastY = y;
+    if (header) header.classList.toggle("is-solid", window.scrollY > 10);
   };
   onScrollHeader();
   window.addEventListener("scroll", onScrollHeader, { passive: true });
@@ -31,7 +26,6 @@ const SCHOOL = {
     document.body.classList.toggle("menu-open", open);
     toggle.setAttribute("aria-expanded", String(open));
     menu.setAttribute("aria-hidden", String(!open));
-    if (open) header.classList.remove("is-hidden");
   };
   if (toggle && menu) {
     toggle.addEventListener("click", () => setMenu(!document.body.classList.contains("menu-open")));
