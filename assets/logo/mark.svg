@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 20 920 650" role="img" aria-label="Quest Breed Schools">
+  <g class="pages">
+    <path fill="#F2408F" d="M255 312Q425 328 508 432L522 578Q400 450 268 412Z"/>
+    <path fill="#EC176B" d="M175 372Q385 388 506 480L522 580Q380 492 190 462Z"/>
+    <path fill="#FDC43C" d="M110 447Q335 452 502 548L522 584Q320 532 125 532Z"/>
+    <path fill="#FCAF17" d="M58 520Q300 505 506 582L524 588Q300 586 88 590Z"/>
+    <path fill="#8C1A8E" d="M728 293Q590 325 512 432L524 578Q630 440 742 380Z"/>
+    <path fill="#A73DB2" d="M805 340Q640 370 515 480L526 580Q650 490 815 427Z"/>
+    <path fill="#1ED69B" d="M880 410Q690 420 520 545L528 584Q700 527 888 497Z"/>
+    <path fill="#7DE7CA" d="M940 485Q740 478 524 582L528 588Q720 586 905 588Z"/>
+    <path fill="#7DE7CA" d="M503 586H578L572 612L540 660L506 612Z"/>
+  </g>
+  <g class="figure" fill="none" stroke="#6A1060" stroke-width="27" stroke-linecap="round">
+    <path d="M400 293Q472 300 506 394"/>
+    <path d="M612 290Q540 298 506 394"/>
+    <path d="M506 392L509 470"/>
+  </g>
+  <g class="buds" fill="#6A1060">
+    <ellipse cx="500" cy="272" rx="25" ry="29"/>
+    <ellipse cx="473" cy="186" rx="13" ry="23" transform="rotate(-15 473 186)"/>
+    <ellipse cx="530" cy="184" rx="13" ry="23" transform="rotate(15 530 184)"/>
+    <ellipse cx="432" cy="229" rx="13" ry="22" transform="rotate(-58 432 229)"/>
+    <ellipse cx="571" cy="226" rx="13" ry="22" transform="rotate(58 571 226)"/>
+  </g>
+  <g class="petals" fill="#EE2BE3">
+    <ellipse cx="500" cy="82" rx="22" ry="42"/>
+    <ellipse cx="417" cy="104" rx="21" ry="40" transform="rotate(-28 417 104)"/>
+    <ellipse cx="583" cy="104" rx="21" ry="40" transform="rotate(28 583 104)"/>
+    <ellipse cx="360" cy="168" rx="41" ry="21" transform="rotate(24 360 168)"/>
+    <ellipse cx="640" cy="168" rx="41" ry="21" transform="rotate(-24 640 168)"/>
+    <ellipse cx="345" cy="245" rx="43" ry="20" transform="rotate(4 345 245)"/>
+    <ellipse cx="655" cy="245" rx="43" ry="20" transform="rotate(-4 655 245)"/>
+  </g>
+</svg>
