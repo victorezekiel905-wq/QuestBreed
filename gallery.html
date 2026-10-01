@@ -62,26 +62,28 @@
 
 <main id="main">
 <section class="page-hero">
-  <div class="container page-hero-grid">
-    <div class="page-hero-copy">
-      <p class="crumbs"><a href="index.html">Home</a><span aria-hidden="true">/</span><span>Gallery</span></p>
-      <h1><span class="line"><span>Moments we</span></span><span class="line"><span><em>treasure</em></span></span></h1>
-      <p class="hero-text">Photographs from our classrooms, celebrations, chess tournament, graduation day and campus. Tap any photo to see it larger.</p>
-    </div>
-    <div class="page-hero-art" aria-hidden="true">
-      <figure class="ph-main"><img src="assets/images/grad-girl-gown.webp" alt="" loading="lazy" decoding="async"></figure>
-      <figure class="ph-small"><img src="assets/images/chess-girl.webp" alt="" loading="lazy" decoding="async"></figure>
-      <span class="ph-badge">
-        <svg class="ring" viewBox="0 0 200 200"><defs><path id="ph-ring" d="M100 100m-80 0a80 80 0 1 1 160 0a80 80 0 1 1-160 0"/></defs><text><textPath href="#ph-ring" textLength="498" lengthAdjust="spacing">Quest Breed Schools • Where curiosity blooms •</textPath></text></svg>
-        <img src="assets/logo/mark.svg" alt="" width="60" height="42">
-      </span>
-    </div>
+  <div class="page-hero-media" aria-hidden="true">
+    <div><img src="assets/images/grad-family.webp" alt="" loading="lazy" decoding="async"></div>
+    <div><img src="assets/images/chess-girl.webp" alt="" loading="lazy" decoding="async"></div>
+    <div><img src="assets/images/pool-duck.webp" alt="" loading="lazy" decoding="async"></div>
+  </div>
+  <div class="hero-shade"></div>
+  <div class="container">
+    <p class="crumbs"><a href="index.html">Home</a><span aria-hidden="true">/</span><span>Gallery</span></p>
+    <h1><span class="line"><span>Moments we</span></span><span class="line"><span><em>treasure</em></span></span></h1>
+    <p class="hero-text">Photographs from our classrooms, celebrations, chess tournament, graduation day and campus. Tap any photo to see it larger.</p>
   </div>
 </section>
 
 <section class="section" aria-labelledby="gallery-title">
   <div class="container">
-    <h2 class="sr-only" id="gallery-title">Photo gallery</h2>
+    <div class="section-head">
+      <div>
+        <p class="kicker"><svg viewBox="0 0 20 20" aria-hidden="true"><ellipse cx="10" cy="10" rx="5" ry="9" fill="#17c98f" transform="rotate(30 10 10)"/></svg>Gallery</p>
+        <h2 class="h2 split-words" id="gallery-title">Snapshots from <em>Quest Breed</em></h2>
+      </div>
+      <p class="lead reveal">Choose a group below, or tap any photo to see it larger.</p>
+    </div>
     <div class="filters" role="group" aria-label="Filter photos">
       <button type="button" data-filter="all" aria-pressed="true">All <span>50</span></button>
       <button type="button" data-filter="classroom" aria-pressed="false">Classroom <span>6</span></button>
@@ -92,56 +94,56 @@
       <button type="button" data-filter="campus" aria-pressed="false">Campus <span>3</span></button>
     </div>
     <div class="gallery">
-      <button type="button" data-cat="classroom" aria-label="Open photo: Counting on a number board with her teacher"><img src="assets/images/count-girl.webp" alt="Counting on a number board with her teacher" loading="lazy" decoding="async"><span class="cap">Counting on a number board with her teacher</span></button>
-      <button type="button" data-cat="graduation" aria-label="Open photo: A nursery graduate in her gown"><img src="assets/images/grad-girl-gown.webp" alt="A nursery graduate in her gown" loading="lazy" decoding="async"><span class="cap">A nursery graduate in her gown</span></button>
-      <button type="button" data-cat="chess" aria-label="Open photo: Concentrating at the chess board"><img src="assets/images/chess-focus.webp" alt="Concentrating at the chess board" loading="lazy" decoding="async"><span class="cap">Concentrating at the chess board</span></button>
-      <button type="button" data-cat="picnic" aria-label="Open photo: Goggles on for the paddling pool"><img src="assets/images/pool-goggles.webp" alt="Goggles on for the paddling pool" loading="lazy" decoding="async"><span class="cap">Goggles on for the paddling pool</span></button>
-      <button type="button" data-cat="classroom" aria-label="Open photo: Finger painting in pre-nursery"><img src="assets/images/paint.webp" alt="Finger painting in pre-nursery" loading="lazy" decoding="async"><span class="cap">Finger painting in pre-nursery</span></button>
-      <button type="button" data-cat="celebrations" aria-label="Open photo: Reciting a poem for Father’s Day"><img src="assets/images/girl-recite.webp" alt="Reciting a poem for Father’s Day" loading="lazy" decoding="async"><span class="cap">Reciting a poem for Father’s Day</span></button>
-      <button type="button" data-cat="graduation" aria-label="Open photo: A graduate with a big grin"><img src="assets/images/grad-boy-peace.webp" alt="A graduate with a big grin" loading="lazy" decoding="async"><span class="cap">A graduate with a big grin</span></button>
-      <button type="button" data-cat="picnic" aria-label="Open photo: A painted heart for Picnic Day"><img src="assets/images/face-blue.webp" alt="A painted heart for Picnic Day" loading="lazy" decoding="async"><span class="cap">A painted heart for Picnic Day</span></button>
-      <button type="button" data-cat="chess" aria-label="Open photo: Our chess team with their badges"><img src="assets/images/chess-team.webp" alt="Our chess team with their badges" loading="lazy" decoding="async"><span class="cap">Our chess team with their badges</span></button>
-      <button type="button" data-cat="celebrations" aria-label="Open photo: Ready to perform on the blue wall"><img src="assets/images/bluewall-pair.webp" alt="Ready to perform on the blue wall" loading="lazy" decoding="async"><span class="cap">Ready to perform on the blue wall</span></button>
-      <button type="button" data-cat="classroom" aria-label="Open photo: Matching numbers in nursery"><img src="assets/images/count-boy.webp" alt="Matching numbers in nursery" loading="lazy" decoding="async"><span class="cap">Matching numbers in nursery</span></button>
-      <button type="button" data-cat="graduation" aria-label="Open photo: Collecting a certificate"><img src="assets/images/grad-certificate.webp" alt="Collecting a certificate" loading="lazy" decoding="async"><span class="cap">Collecting a certificate</span></button>
-      <button type="button" data-cat="picnic" aria-label="Open photo: Swim rings at the ready"><img src="assets/images/two-rings.webp" alt="Swim rings at the ready" loading="lazy" decoding="async"><span class="cap">Swim rings at the ready</span></button>
-      <button type="button" data-cat="celebrations" aria-label="Open photo: A dad speaking at the Father’s Day celebration"><img src="assets/images/dad-bowtie.webp" alt="A dad speaking at the Father’s Day celebration" loading="lazy" decoding="async"><span class="cap">A dad speaking at the Father’s Day celebration</span></button>
-      <button type="button" data-cat="chess" aria-label="Open photo: Thinking through the next move"><img src="assets/images/chess-match.webp" alt="Thinking through the next move" loading="lazy" decoding="async"><span class="cap">Thinking through the next move</span></button>
-      <button type="button" data-cat="classroom" aria-label="Open photo: Showing our number work"><img src="assets/images/class-numbers.webp" alt="Showing our number work" loading="lazy" decoding="async"><span class="cap">Showing our number work</span></button>
-      <button type="button" data-cat="graduation" aria-label="Open photo: Graduation day with family"><img src="assets/images/grad-pair.webp" alt="Graduation day with family" loading="lazy" decoding="async"><span class="cap">Graduation day with family</span></button>
-      <button type="button" data-cat="picnic" aria-label="Open photo: Picnic Day on the turf"><img src="assets/images/girl-pink.webp" alt="Picnic Day on the turf" loading="lazy" decoding="async"><span class="cap">Picnic Day on the turf</span></button>
-      <button type="button" data-cat="campus" aria-label="Open photo: Pupils in uniform by the motto boards"><img src="assets/images/hands-turf.webp" alt="Pupils in uniform by the motto boards" loading="lazy" decoding="async"><span class="cap">Pupils in uniform by the motto boards</span></button>
-      <button type="button" data-cat="chess" aria-label="Open photo: A careful move"><img src="assets/images/chess-move.webp" alt="A careful move" loading="lazy" decoding="async"><span class="cap">A careful move</span></button>
-      <button type="button" data-cat="graduation" aria-label="Open photo: A graduate in white"><img src="assets/images/grad-girl-white.webp" alt="A graduate in white" loading="lazy" decoding="async"><span class="cap">A graduate in white</span></button>
-      <button type="button" data-cat="picnic" aria-label="Open photo: A swan float in the paddling pool"><img src="assets/images/pool-swan.webp" alt="A swan float in the paddling pool" loading="lazy" decoding="async"><span class="cap">A swan float in the paddling pool</span></button>
-      <button type="button" data-cat="classroom" aria-label="Open photo: Well done!"><img src="assets/images/count-clap.webp" alt="Well done!" loading="lazy" decoding="async"><span class="cap">Well done!</span></button>
-      <button type="button" data-cat="celebrations" aria-label="Open photo: Standing tall in uniform"><img src="assets/images/boy-proud.webp" alt="Standing tall in uniform" loading="lazy" decoding="async"><span class="cap">Standing tall in uniform</span></button>
-      <button type="button" data-cat="chess" aria-label="Open photo: Chess tournament day"><img src="assets/images/chess-team-2.webp" alt="Chess tournament day" loading="lazy" decoding="async"><span class="cap">Chess tournament day</span></button>
-      <button type="button" data-cat="graduation" aria-label="Open photo: The Rooted to Grow balloon arch"><img src="assets/images/grad-arch.webp" alt="The Rooted to Grow balloon arch" loading="lazy" decoding="async"><span class="cap">The Rooted to Grow balloon arch</span></button>
-      <button type="button" data-cat="celebrations" aria-label="Open photo: The Father’s Day cook-off"><img src="assets/images/dad-cook.webp" alt="The Father’s Day cook-off" loading="lazy" decoding="async"><span class="cap">The Father’s Day cook-off</span></button>
-      <button type="button" data-cat="picnic" aria-label="Open photo: The biggest smile on Picnic Day"><img src="assets/images/big-smile.webp" alt="The biggest smile on Picnic Day" loading="lazy" decoding="async"><span class="cap">The biggest smile on Picnic Day</span></button>
-      <button type="button" data-cat="graduation" aria-label="Open photo: A graduate in a grey suit"><img src="assets/images/grad-boy-suit.webp" alt="A graduate in a grey suit" loading="lazy" decoding="async"><span class="cap">A graduate in a grey suit</span></button>
-      <button type="button" data-cat="graduation" aria-label="Open photo: A twirl in a white and purple dress"><img src="assets/images/grad-girl-twirl.webp" alt="A twirl in a white and purple dress" loading="lazy" decoding="async"><span class="cap">A twirl in a white and purple dress</span></button>
-      <button type="button" data-cat="graduation" aria-label="Open photo: A graduate with family and teachers"><img src="assets/images/grad-family.webp" alt="A graduate with family and teachers" loading="lazy" decoding="async"><span class="cap">A graduate with family and teachers</span></button>
-      <button type="button" data-cat="graduation" aria-label="Open photo: A speech at the graduation ceremony"><img src="assets/images/grad-award.webp" alt="A speech at the graduation ceremony" loading="lazy" decoding="async"><span class="cap">A speech at the graduation ceremony</span></button>
-      <button type="button" data-cat="graduation" aria-label="Open photo: Prize-giving on graduation day"><img src="assets/images/grad-speech.webp" alt="Prize-giving on graduation day" loading="lazy" decoding="async"><span class="cap">Prize-giving on graduation day</span></button>
-      <button type="button" data-cat="chess" aria-label="Open photo: At the board, ready to play"><img src="assets/images/chess-boy.webp" alt="At the board, ready to play" loading="lazy" decoding="async"><span class="cap">At the board, ready to play</span></button>
-      <button type="button" data-cat="chess" aria-label="Open photo: Our chess star at the tournament"><img src="assets/images/chess-girl.webp" alt="Our chess star at the tournament" loading="lazy" decoding="async"><span class="cap">Our chess star at the tournament</span></button>
-      <button type="button" data-cat="chess" aria-label="Open photo: The tournament hall"><img src="assets/images/chess-hall.webp" alt="The tournament hall" loading="lazy" decoding="async"><span class="cap">The tournament hall</span></button>
-      <button type="button" data-cat="chess" aria-label="Open photo: Every board in play"><img src="assets/images/chess-hall-2.webp" alt="Every board in play" loading="lazy" decoding="async"><span class="cap">Every board in play</span></button>
-      <button type="button" data-cat="classroom" aria-label="Open photo: Fingers dotted with green paint"><img src="assets/images/paint-top.webp" alt="Fingers dotted with green paint" loading="lazy" decoding="async"><span class="cap">Fingers dotted with green paint</span></button>
-      <button type="button" data-cat="picnic" aria-label="Open photo: Resting in the sunshine on Picnic Day"><img src="assets/images/toddlers.webp" alt="Resting in the sunshine on Picnic Day" loading="lazy" decoding="async"><span class="cap">Resting in the sunshine on Picnic Day</span></button>
-      <button type="button" data-cat="picnic" aria-label="Open photo: Races on the turf"><img src="assets/images/turf-run.webp" alt="Races on the turf" loading="lazy" decoding="async"><span class="cap">Races on the turf</span></button>
-      <button type="button" data-cat="picnic" aria-label="Open photo: Duck floats in the paddling pool"><img src="assets/images/pool-duck.webp" alt="Duck floats in the paddling pool" loading="lazy" decoding="async"><span class="cap">Duck floats in the paddling pool</span></button>
-      <button type="button" data-cat="celebrations" aria-label="Open photo: I am worthy, for the Day of the Boy Child"><img src="assets/images/worthy.webp" alt="I am worthy, for the Day of the Boy Child" loading="lazy" decoding="async"><span class="cap">I am worthy, for the Day of the Boy Child</span></button>
-      <button type="button" data-cat="celebrations" aria-label="Open photo: I am kind"><img src="assets/images/kind.webp" alt="I am kind" loading="lazy" decoding="async"><span class="cap">I am kind</span></button>
-      <button type="button" data-cat="celebrations" aria-label="Open photo: Holding hands on the turf"><img src="assets/images/yellow-pair.webp" alt="Holding hands on the turf" loading="lazy" decoding="async"><span class="cap">Holding hands on the turf</span></button>
-      <button type="button" data-cat="celebrations" aria-label="Open photo: Three friends in uniform"><img src="assets/images/trio-turf.webp" alt="Three friends in uniform" loading="lazy" decoding="async"><span class="cap">Three friends in uniform</span></button>
-      <button type="button" data-cat="celebrations" aria-label="Open photo: Spaghetti at the Father’s Day cook-off"><img src="assets/images/dad-spaghetti.webp" alt="Spaghetti at the Father’s Day cook-off" loading="lazy" decoding="async"><span class="cap">Spaghetti at the Father’s Day cook-off</span></button>
-      <button type="button" data-cat="celebrations" aria-label="Open photo: Children’s Day, 2026"><img src="assets/images/childrens-day.webp" alt="Children’s Day, 2026" loading="lazy" decoding="async"><span class="cap">Children’s Day, 2026</span></button>
-      <button type="button" data-cat="celebrations" aria-label="Open photo: Happy resumption!"><img src="assets/images/resumption.webp" alt="Happy resumption!" loading="lazy" decoding="async"><span class="cap">Happy resumption!</span></button>
-      <button type="button" data-cat="campus" aria-label="Open photo: Our front courtyard and motto boards"><img src="assets/images/campus-front.webp" alt="Our front courtyard and motto boards" loading="lazy" decoding="async"><span class="cap">Our front courtyard and motto boards</span></button>
-      <button type="button" data-cat="campus" aria-label="Open photo: The turf and play area"><img src="assets/images/campus-turf.webp" alt="The turf and play area" loading="lazy" decoding="async"><span class="cap">The turf and play area</span></button>
+      <button type="button" data-cat="classroom" aria-label="Open photo: Counting on a number board with her teacher"><img src="assets/images/count-girl.webp" alt="Counting on a number board with her teacher" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="graduation" aria-label="Open photo: A nursery graduate in her gown"><img src="assets/images/grad-girl-gown.webp" alt="A nursery graduate in her gown" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="chess" aria-label="Open photo: Concentrating at the chess board"><img src="assets/images/chess-focus.webp" alt="Concentrating at the chess board" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="picnic" aria-label="Open photo: Goggles on for the paddling pool"><img src="assets/images/pool-goggles.webp" alt="Goggles on for the paddling pool" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="classroom" aria-label="Open photo: Finger painting in pre-nursery"><img src="assets/images/paint.webp" alt="Finger painting in pre-nursery" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="celebrations" aria-label="Open photo: Reciting a poem for Father’s Day"><img src="assets/images/girl-recite.webp" alt="Reciting a poem for Father’s Day" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="graduation" aria-label="Open photo: A graduate with a big grin"><img src="assets/images/grad-boy-peace.webp" alt="A graduate with a big grin" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="picnic" aria-label="Open photo: A painted heart for Picnic Day"><img src="assets/images/face-blue.webp" alt="A painted heart for Picnic Day" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="chess" aria-label="Open photo: Our chess team with their badges"><img src="assets/images/chess-team.webp" alt="Our chess team with their badges" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="celebrations" aria-label="Open photo: Ready to perform on the blue wall"><img src="assets/images/bluewall-pair.webp" alt="Ready to perform on the blue wall" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="classroom" aria-label="Open photo: Matching numbers in nursery"><img src="assets/images/count-boy.webp" alt="Matching numbers in nursery" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="graduation" aria-label="Open photo: Collecting a certificate"><img src="assets/images/grad-certificate.webp" alt="Collecting a certificate" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="picnic" aria-label="Open photo: Swim rings at the ready"><img src="assets/images/two-rings.webp" alt="Swim rings at the ready" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="celebrations" aria-label="Open photo: A dad speaking at the Father’s Day celebration"><img src="assets/images/dad-bowtie.webp" alt="A dad speaking at the Father’s Day celebration" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="chess" aria-label="Open photo: Thinking through the next move"><img src="assets/images/chess-match.webp" alt="Thinking through the next move" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="classroom" aria-label="Open photo: Showing our number work"><img src="assets/images/class-numbers.webp" alt="Showing our number work" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="graduation" aria-label="Open photo: Graduation day with family"><img src="assets/images/grad-pair.webp" alt="Graduation day with family" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="picnic" aria-label="Open photo: Picnic Day on the turf"><img src="assets/images/girl-pink.webp" alt="Picnic Day on the turf" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="campus" aria-label="Open photo: Pupils in uniform by the motto boards"><img src="assets/images/hands-turf.webp" alt="Pupils in uniform by the motto boards" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="chess" aria-label="Open photo: A careful move"><img src="assets/images/chess-move.webp" alt="A careful move" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="graduation" aria-label="Open photo: A graduate in white"><img src="assets/images/grad-girl-white.webp" alt="A graduate in white" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="picnic" aria-label="Open photo: A swan float in the paddling pool"><img src="assets/images/pool-swan.webp" alt="A swan float in the paddling pool" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="classroom" aria-label="Open photo: Well done!"><img src="assets/images/count-clap.webp" alt="Well done!" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="celebrations" aria-label="Open photo: Standing tall in uniform"><img src="assets/images/boy-proud.webp" alt="Standing tall in uniform" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="chess" aria-label="Open photo: Chess tournament day"><img src="assets/images/chess-team-2.webp" alt="Chess tournament day" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="graduation" aria-label="Open photo: The Rooted to Grow balloon arch"><img src="assets/images/grad-arch.webp" alt="The Rooted to Grow balloon arch" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="celebrations" aria-label="Open photo: The Father’s Day cook-off"><img src="assets/images/dad-cook.webp" alt="The Father’s Day cook-off" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="picnic" aria-label="Open photo: The biggest smile on Picnic Day"><img src="assets/images/big-smile.webp" alt="The biggest smile on Picnic Day" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="graduation" aria-label="Open photo: A graduate in a grey suit"><img src="assets/images/grad-boy-suit.webp" alt="A graduate in a grey suit" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="graduation" aria-label="Open photo: A twirl in a white and purple dress"><img src="assets/images/grad-girl-twirl.webp" alt="A twirl in a white and purple dress" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="graduation" aria-label="Open photo: A graduate with family and teachers"><img src="assets/images/grad-family.webp" alt="A graduate with family and teachers" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="graduation" aria-label="Open photo: A speech at the graduation ceremony"><img src="assets/images/grad-award.webp" alt="A speech at the graduation ceremony" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="graduation" aria-label="Open photo: Prize-giving on graduation day"><img src="assets/images/grad-speech.webp" alt="Prize-giving on graduation day" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="chess" aria-label="Open photo: At the board, ready to play"><img src="assets/images/chess-boy.webp" alt="At the board, ready to play" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="chess" aria-label="Open photo: Our chess star at the tournament"><img src="assets/images/chess-girl.webp" alt="Our chess star at the tournament" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="chess" aria-label="Open photo: The tournament hall"><img src="assets/images/chess-hall.webp" alt="The tournament hall" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="chess" aria-label="Open photo: Every board in play"><img src="assets/images/chess-hall-2.webp" alt="Every board in play" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="classroom" aria-label="Open photo: Fingers dotted with green paint"><img src="assets/images/paint-top.webp" alt="Fingers dotted with green paint" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="picnic" aria-label="Open photo: Resting in the sunshine on Picnic Day"><img src="assets/images/toddlers.webp" alt="Resting in the sunshine on Picnic Day" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="picnic" aria-label="Open photo: Races on the turf"><img src="assets/images/turf-run.webp" alt="Races on the turf" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="picnic" aria-label="Open photo: Duck floats in the paddling pool"><img src="assets/images/pool-duck.webp" alt="Duck floats in the paddling pool" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="celebrations" aria-label="Open photo: I am worthy, for the Day of the Boy Child"><img src="assets/images/worthy.webp" alt="I am worthy, for the Day of the Boy Child" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="celebrations" aria-label="Open photo: I am kind"><img src="assets/images/kind.webp" alt="I am kind" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="celebrations" aria-label="Open photo: Holding hands on the turf"><img src="assets/images/yellow-pair.webp" alt="Holding hands on the turf" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="celebrations" aria-label="Open photo: Three friends in uniform"><img src="assets/images/trio-turf.webp" alt="Three friends in uniform" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="celebrations" aria-label="Open photo: Spaghetti at the Father’s Day cook-off"><img src="assets/images/dad-spaghetti.webp" alt="Spaghetti at the Father’s Day cook-off" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="celebrations" aria-label="Open photo: Children’s Day, 2026"><img src="assets/images/childrens-day.webp" alt="Children’s Day, 2026" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="celebrations" aria-label="Open photo: Happy resumption!"><img src="assets/images/resumption.webp" alt="Happy resumption!" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="campus" aria-label="Open photo: Our front courtyard and motto boards"><img src="assets/images/campus-front.webp" alt="Our front courtyard and motto boards" loading="lazy" decoding="async"></button>
+      <button type="button" data-cat="campus" aria-label="Open photo: The turf and play area"><img src="assets/images/campus-turf.webp" alt="The turf and play area" loading="lazy" decoding="async"></button>
     </div>
   </div>
 </section>
@@ -154,7 +156,7 @@
 </div>
 
 <section class="section call" aria-labelledby="call-title">
-  <div class="petal-field" data-petals="12" aria-hidden="true"></div>
+  <div class="petal-field" data-petals="16" aria-hidden="true"></div>
   <div class="container call-grid">
     <div>
       <p class="kicker on-dark"><svg viewBox="0 0 20 20" aria-hidden="true"><ellipse cx="10" cy="10" rx="5" ry="9" fill="#fdc43c" transform="rotate(30 10 10)"/></svg>Admissions</p>
