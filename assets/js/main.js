@@ -1,341 +1,323 @@
-/* Quest Breed Schools: menu, motion and forms.
-   The school's WhatsApp number and email used by the enquiry forms: */
-const SCHOOL = {
-  whatsapp: "2348024412737",
-  email: "questbreedschools@gmail.com",
-};
+/* Quest Breed Schools: site behaviour */
+(function () {
+  'use strict';
 
-(() => {
-  const doc = document.documentElement;
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const desktop = () => window.matchMedia("(min-width: 1021px)").matches;
+  var SCHOOL_WHATSAPP = '2348024412737';
+  var SCHOOL_EMAIL = 'questbreedschools@gmail.com';
+  var SCHOOL_EMAIL_CC = '';
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- Header ---------- */
-  const header = document.querySelector(".site-header");
-  // the bar is always white; it only gains a soft shadow once the page scrolls
-  const onScrollHeader = () => {
-    if (header) header.classList.toggle("is-solid", window.scrollY > 10);
-  };
-  onScrollHeader();
-  window.addEventListener("scroll", onScrollHeader, { passive: true });
-
-  /* ---------- Mobile menu ---------- */
-  const toggle = document.querySelector(".menu-toggle");
-  const menu = document.querySelector(".mobile-menu");
-  const setMenu = (open) => {
-    document.body.classList.toggle("menu-open", open);
-    toggle.setAttribute("aria-expanded", String(open));
-    menu.setAttribute("aria-hidden", String(!open));
-  };
-  if (toggle && menu) {
-    toggle.addEventListener("click", () => setMenu(!document.body.classList.contains("menu-open")));
-    menu.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => setMenu(false)));
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && document.body.classList.contains("menu-open")) setMenu(false);
-    });
-  }
-
-  /* ---------- Videos: load when near, play only while visible ---------- */
-  const videos = [...document.querySelectorAll("video[data-src]")];
-  const isShown = (el) => el.offsetParent !== null || getComputedStyle(el).position === "fixed";
-  const loadVideo = (v) => {
-    if (v.dataset.loaded) return;
-    v.src = v.dataset.src;
-    v.dataset.loaded = "1";
-  };
-  const playVideo = (v) => {
-    if (reduceMotion || !isShown(v)) return;
-    loadVideo(v);
-    const p = v.play();
-    if (p && p.catch) p.catch(() => {});
-  };
-  if ("IntersectionObserver" in window) {
-    const vio = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(({ target, isIntersecting }) => {
-          if (isIntersecting) playVideo(target);
-          else if (!target.paused) target.pause();
-        });
-      },
-      { rootMargin: "200px 0px" }
-    );
-    videos.forEach((v) => vio.observe(v));
-  } else {
-    videos.forEach(playVideo);
-  }
-  window.addEventListener("resize", () => videos.forEach((v) => isShown(v) && v.paused && v.dataset.loaded && playVideo(v)));
-
-  /* ---------- Hero word rotator ---------- */
-  document.querySelectorAll(".rotator").forEach((rot) => {
-    const words = [...rot.children];
-    if (words.length < 2 || reduceMotion) return;
-    let i = 0;
-    setInterval(() => {
-      const cur = words[i];
-      cur.classList.remove("is-in");
-      cur.classList.add("is-out");
-      i = (i + 1) % words.length;
-      const next = words[i];
-      next.classList.remove("is-out");
-      next.classList.add("is-in");
-      setTimeout(() => cur.classList.remove("is-out"), 900);
-    }, 2800);
-  });
-
-  /* ---------- Split headings into words ---------- */
-  const splitWords = (root) => {
-    let n = 0;
-    const walk = (node) => {
-      [...node.childNodes].forEach((child) => {
-        if (child.nodeType === 3) {
-          const parts = child.textContent.split(/(\s+)/);
-          const frag = document.createDocumentFragment();
-          parts.forEach((part) => {
-            if (!part) return;
-            if (/^\s+$/.test(part)) {
-              frag.appendChild(document.createTextNode(" "));
-              return;
-            }
-            const wd = document.createElement("span");
-            wd.className = "wd";
-            const inner = document.createElement("span");
-            inner.textContent = part;
-            inner.style.setProperty("--i", n++);
-            wd.appendChild(inner);
-            frag.appendChild(wd);
-          });
-          child.replaceWith(frag);
-        } else if (child.nodeType === 1 && child.tagName !== "BR") {
-          walk(child);
-        }
-      });
-    };
-    walk(root);
-  };
-  document.querySelectorAll(".split-words").forEach(splitWords);
-
-  /* ---------- Statement: words light up with scroll ---------- */
-  const statements = [...document.querySelectorAll(".statement")];
-  statements.forEach((st) => {
-    const walk = (node) => {
-      [...node.childNodes].forEach((child) => {
-        if (child.nodeType === 3) {
-          const frag = document.createDocumentFragment();
-          child.textContent.split(/(\s+)/).forEach((part) => {
-            if (!part) return;
-            if (/^\s+$/.test(part)) frag.appendChild(document.createTextNode(" "));
-            else {
-              const w = document.createElement("span");
-              w.className = "w";
-              w.textContent = part;
-              frag.appendChild(w);
-            }
-          });
-          child.replaceWith(frag);
-        } else if (child.nodeType === 1) walk(child);
-      });
-    };
-    walk(st);
-    st._words = [...st.querySelectorAll(".w")];
-  });
-  const lightStatements = () => {
-    statements.forEach((st) => {
-      const r = st.getBoundingClientRect();
-      const vh = window.innerHeight;
-      const progress = Math.min(1, Math.max(0, (vh * 0.85 - r.top) / (r.height + vh * 0.35)));
-      const count = Math.round(progress * st._words.length);
-      st._words.forEach((w, i) => w.classList.toggle("lit", i < count));
-    });
-  };
-
-  /* ---------- Films: pinned horizontal scroll on desktop ---------- */
-  const pin = document.querySelector(".films-pin");
-  const track = pin && pin.querySelector(".films-track");
-  const bar = pin && pin.querySelector(".films-progress span");
-  const sizeFilms = () => {
-    if (!pin || !track) return;
-    if (!desktop() || reduceMotion) {
-      pin.style.height = "";
-      track.style.transform = "";
-      return;
+  /* Header: solid after scrolling, hides on the way down, returns on the way up */
+  var header = document.querySelector('.header');
+  var lastY = window.scrollY;
+  function onScroll() {
+    var y = window.scrollY;
+    header.classList.toggle('is-solid', y > 40);
+    if (!document.body.classList.contains('is-locked')) {
+      header.classList.toggle('is-hidden', y > 400 && y > lastY + 4);
+      if (y < lastY - 4) header.classList.remove('is-hidden');
     }
-    const distance = Math.max(0, track.scrollWidth - window.innerWidth);
-    pin.dataset.distance = distance;
-    pin.style.height = window.innerHeight + distance + "px";
-  };
-  const moveFilms = () => {
-    if (!pin || !track || !desktop() || reduceMotion) return;
-    const r = pin.getBoundingClientRect();
-    const distance = +pin.dataset.distance || 0;
-    const p = Math.min(1, Math.max(0, -r.top / Math.max(1, distance)));
-    track.style.transform = `translate3d(${-p * distance}px,0,0)`;
-    if (bar) bar.style.transform = `scaleX(${p})`;
-  };
-
-  /* ---------- One scroll loop ---------- */
-  let ticking = false;
-  const onScroll = () => {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(() => {
-      lightStatements();
-      moveFilms();
-      ticking = false;
-    });
-  };
-  window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", () => {
-    sizeFilms();
-    onScroll();
-  });
-  window.addEventListener("load", () => {
-    sizeFilms();
-    onScroll();
-  });
-  sizeFilms();
+    lastY = y;
+  }
   onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
 
-  /* ---------- Reveal on scroll ---------- */
-  const revealables = document.querySelectorAll(".reveal, .reveal-img, .split-words, .bloom");
-  if ("IntersectionObserver" in window && !reduceMotion) {
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add("is-in");
-            io.unobserve(e.target);
+  /* Mobile menu */
+  var burger = document.querySelector('.burger');
+  var menu = document.getElementById('menu');
+  function setMenu(open) {
+    burger.setAttribute('aria-expanded', String(open));
+    burger.querySelector('.label-text').textContent = open ? 'Close' : 'Menu';
+    menu.classList.toggle('is-open', open);
+    header.classList.toggle('menu-active', open);
+    document.body.classList.toggle('is-locked', open);
+    if (open) menu.removeAttribute('inert');
+    else menu.setAttribute('inert', '');
+  }
+  if (burger && menu) {
+    burger.addEventListener('click', function () {
+      setMenu(burger.getAttribute('aria-expanded') !== 'true');
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && menu.classList.contains('is-open')) {
+        setMenu(false);
+        burger.focus();
+      }
+    });
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 1080 && menu.classList.contains('is-open')) setMenu(false);
+    });
+  }
+
+  /* Reveal on scroll */
+  var revealEls = document.querySelectorAll('[data-reveal]');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-in');
+            io.unobserve(entry.target);
           }
         });
       },
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.12 }
+      { rootMargin: '0px 0px -10% 0px', threshold: 0.12 }
     );
-    revealables.forEach((el) => io.observe(el));
+    revealEls.forEach(function (el) {
+      io.observe(el);
+    });
   } else {
-    revealables.forEach((el) => el.classList.add("is-in"));
+    revealEls.forEach(function (el) {
+      el.classList.add('is-in');
+    });
   }
 
-  /* ---------- Floating petals ---------- */
-  const tones = ["#fcaf17", "#ec176b", "#e526d8", "#a73db2", "#17c98f", "#7de7ca"];
-  document.querySelectorAll(".petal-field").forEach((field) => {
-    const count = +field.dataset.petals || 8;
-    for (let i = 0; i < count; i++) {
-      const p = document.createElement("i");
-      const s = 10 + Math.random() * 22;
-      p.style.cssText = [
-        `left:${Math.random() * 100}%`,
-        `top:${Math.random() * 100}%`,
-        `--s:${s}px`,
-        `--c:${tones[i % tones.length]}`,
-        `--o:${(0.12 + Math.random() * 0.2).toFixed(2)}`,
-        `--r:${Math.round(Math.random() * 180)}deg`,
-        `--x:${Math.round(Math.random() * 80 - 40)}px`,
-        `--y:${Math.round(Math.random() * -90 - 20)}px`,
-        `--d:${(10 + Math.random() * 10).toFixed(1)}s`,
-        `animation-delay:${(-Math.random() * 10).toFixed(1)}s`,
-      ].join(";");
-      field.appendChild(p);
+  /* Rotating word in the hero */
+  document.querySelectorAll('.rotator').forEach(function (rotator) {
+    var words = rotator.querySelectorAll('span');
+    var i = 0;
+    words[0].classList.add('is-in');
+    if (reduceMotion || words.length < 2) return;
+    setInterval(function () {
+      var current = words[i];
+      i = (i + 1) % words.length;
+      current.classList.remove('is-in');
+      current.classList.add('is-out');
+      words[i].classList.remove('is-out');
+      words[i].classList.add('is-in');
+      setTimeout(function () {
+        current.classList.remove('is-out');
+      }, 900);
+    }, 2600);
+  });
+
+  /* Videos: play only while visible, respect reduced motion, and the hero pause button */
+  var videos = Array.prototype.slice.call(document.querySelectorAll('video[data-auto]'));
+  var userPaused = false;
+  function tryPlay(v) {
+    if (userPaused && v.closest('.hero')) return;
+    var p = v.play();
+    if (p && p.catch) p.catch(function () {});
+  }
+  function startVideos() {
+    if (reduceMotion || !('IntersectionObserver' in window)) return;
+    var vo = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) tryPlay(entry.target);
+          else entry.target.pause();
+        });
+      },
+      { threshold: 0.2 }
+    );
+    videos.forEach(function (v) {
+      v.muted = true;
+      vo.observe(v);
+    });
+  }
+  if (document.readyState === 'complete') startVideos();
+  else window.addEventListener('load', startVideos);
+  if (reduceMotion) videos.forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); });
+  var toggle = document.querySelector('.video-toggle');
+  if (toggle) {
+    if (reduceMotion) toggle.setAttribute('aria-pressed', 'true');
+    toggle.addEventListener('click', function () {
+      userPaused = toggle.getAttribute('aria-pressed') !== 'true';
+      toggle.setAttribute('aria-pressed', String(userPaused));
+      toggle.querySelector('.toggle-text').textContent = userPaused ? 'Play video' : 'Pause video';
+      document.querySelectorAll('.hero video').forEach(function (v) {
+        if (userPaused) v.pause();
+        else tryPlay(v);
+      });
+    });
+  }
+
+  /* Gentle parallax on full-bleed bands */
+  var bands = document.querySelectorAll('.band > img');
+  if (bands.length && !reduceMotion) {
+    var ticking = false;
+    function parallax() {
+      bands.forEach(function (img) {
+        var rect = img.parentElement.getBoundingClientRect();
+        var progress = (rect.top + rect.height / 2 - window.innerHeight / 2) / window.innerHeight;
+        img.style.transform = 'translate3d(0,' + (progress * -60).toFixed(1) + 'px,0)';
+      });
+      ticking = false;
     }
+    window.addEventListener(
+      'scroll',
+      function () {
+        if (!ticking) {
+          requestAnimationFrame(parallax);
+          ticking = true;
+        }
+      },
+      { passive: true }
+    );
+    parallax();
+  }
+
+  /* Enquiry forms: compose a message and open WhatsApp or email */
+  document.querySelectorAll('.enquiry').forEach(function (form) {
+    var status = form.querySelector('.form-status');
+    var rules = {
+      parent: function (v) {
+        return v.length < 2 ? 'Please enter your name.' : '';
+      },
+      phone: function (v) {
+        return v.replace(/\D/g, '').length < 7 ? 'Please enter a phone number we can reach you on.' : '';
+      },
+      email: function (v) {
+        return v && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? 'Please check the email address.' : '';
+      },
+      programme: function (v) {
+        return v ? '' : 'Please choose a class.';
+      }
+    };
+    function showError(field, msg) {
+      var wrap = field.closest('.field');
+      var old = wrap.querySelector('.field-error');
+      if (old) old.remove();
+      wrap.classList.toggle('has-error', !!msg);
+      field.setAttribute('aria-invalid', msg ? 'true' : 'false');
+      if (msg) {
+        var note = document.createElement('span');
+        note.className = 'field-error';
+        note.id = field.id + '-error';
+        note.textContent = msg;
+        wrap.appendChild(note);
+        field.setAttribute('aria-describedby', note.id);
+      } else {
+        field.removeAttribute('aria-describedby');
+      }
+    }
+    function validate() {
+      var first = null;
+      Object.keys(rules).forEach(function (name) {
+        var field = form.elements[name];
+        if (!field) return;
+        var msg = rules[name](field.value.trim());
+        showError(field, msg);
+        if (msg && !first) first = field;
+      });
+      return first;
+    }
+    form.addEventListener('input', function (e) {
+      if (e.target.closest('.has-error')) validate();
+    });
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var invalid = validate();
+      if (invalid) {
+        invalid.focus();
+        return;
+      }
+      function get(n) {
+        return form.elements[n] ? form.elements[n].value.trim() : '';
+      }
+      var visit = get('visit');
+      if (visit) {
+        visit = new Date(visit + 'T00:00:00').toLocaleDateString('en-GB', {
+          weekday: 'long',
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric'
+        });
+      }
+      var lines = ['Parent/guardian: ' + get('parent'), 'Phone: ' + get('phone')];
+      if (get('email')) lines.push('Email: ' + get('email'));
+      lines.push('Class of interest: ' + get('programme'));
+      if (get('child')) lines.push("Child's name: " + get('child'));
+      if (get('age')) lines.push("Child's age: " + get('age'));
+      if (visit) lines.push('Preferred visit date: ' + visit);
+      var text = 'Hello Quest Breed Schools, I would like to make an enquiry.\n\n' + lines.join('\n');
+      if (get('message')) text += '\n\n' + get('message');
+
+      if (e.submitter && e.submitter.value === 'email') {
+        window.location.href =
+          'mailto:' + SCHOOL_EMAIL + (SCHOOL_EMAIL_CC ? '?cc=' + encodeURIComponent(SCHOOL_EMAIL_CC) + '&subject=' : '?subject=') + encodeURIComponent('Enquiry: ' + get('programme')) + '&body=' + encodeURIComponent(text);
+        status.textContent = 'Your email app should now be open with the message ready to send.';
+      } else {
+        window.open('https://wa.me/' + SCHOOL_WHATSAPP + '?text=' + encodeURIComponent(text), '_blank', 'noopener');
+        status.textContent = 'WhatsApp has opened with your message ready to send. Thank you, we look forward to meeting you.';
+      }
+      status.classList.add('is-visible');
+    });
   });
 
-  /* ---------- Did you know? ---------- */
-  document.querySelectorAll("[data-dyk]").forEach((box) => {
-    const facts = [...box.querySelectorAll(".dyk-fact")];
-    const dots = box.querySelector(".dyk-dots");
-    if (!facts.length) return;
-    facts.forEach(() => dots && dots.appendChild(document.createElement("i")));
-    let i = 0;
-    let timer;
-    const show = (n) => {
-      i = (n + facts.length) % facts.length;
-      facts.forEach((f, k) => f.classList.toggle("is-on", k === i));
-      if (dots) [...dots.children].forEach((d, k) => d.classList.toggle("is-on", k === i));
-    };
-    const auto = () => {
-      clearInterval(timer);
-      if (!reduceMotion) timer = setInterval(() => show(i + 1), 5200);
-    };
-    box.querySelector("[data-next]")?.addEventListener("click", () => { show(i + 1); auto(); });
-    box.querySelector("[data-prev]")?.addEventListener("click", () => { show(i - 1); auto(); });
-    show(0);
-    auto();
-  });
-
-  /* ---------- Gallery filter + lightbox ---------- */
-  const gallery = document.querySelector(".gallery");
-  if (gallery) {
-    const items = [...gallery.querySelectorAll("button")];
-    document.querySelectorAll(".filters button").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const f = btn.dataset.filter;
-        document.querySelectorAll(".filters button").forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
-        items.forEach((it) => it.classList.toggle("is-hidden", f !== "all" && it.dataset.cat !== f));
+  /* Gallery filter and lightbox */
+  var gallery = document.querySelector('.gallery');
+  if (gallery && document.querySelector('.lightbox')) {
+    var items = Array.prototype.slice.call(document.querySelectorAll('.gallery li'));
+    var buttons = document.querySelectorAll('.filters button');
+    buttons.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var f = b.getAttribute('data-filter');
+        buttons.forEach(function (x) {
+          x.setAttribute('aria-pressed', String(x === b));
+        });
+        items.forEach(function (item) {
+          item.hidden = !(f === 'all' || item.getAttribute('data-cat') === f);
+        });
       });
     });
 
-    const lb = document.querySelector(".lightbox");
-    const lbImg = lb.querySelector("img");
-    const lbCap = lb.querySelector("p");
-    let current = 0;
-    let lastFocus = null;
-    const visible = () => items.filter((it) => !it.classList.contains("is-hidden"));
-    const open = (idx) => {
-      const list = visible();
-      current = (idx + list.length) % list.length;
-      const img = list[current].querySelector("img");
-      lbImg.src = img.currentSrc || img.src;
+    var lb = document.querySelector('.lightbox');
+    var lbImg = lb.querySelector('img');
+    var lbCap = lb.querySelector('.lb-cap');
+    var lbCount = lb.querySelector('.lb-count');
+    var current = 0;
+    function visible() {
+      return items.filter(function (i) {
+        return !i.hidden;
+      });
+    }
+    function show(n) {
+      var list = visible();
+      if (!list.length) return;
+      current = (n + list.length) % list.length;
+      var img = list[current].querySelector('img');
+      lbImg.src = img.getAttribute('data-full') || img.src;
       lbImg.alt = img.alt;
-      lbCap.textContent = img.alt;
-      lb.classList.add("is-open");
-      lb.setAttribute("aria-hidden", "false");
-      document.body.style.overflow = "hidden";
-      lb.querySelector(".lb-close").focus();
-    };
-    const close = () => {
-      lb.classList.remove("is-open");
-      lb.setAttribute("aria-hidden", "true");
-      document.body.style.overflow = "";
-      if (lastFocus) lastFocus.focus();
-    };
-    items.forEach((it) =>
-      it.addEventListener("click", () => {
-        lastFocus = it;
-        open(visible().indexOf(it));
-      })
-    );
-    lb.querySelector(".lb-close").addEventListener("click", close);
-    lb.querySelector(".lb-next").addEventListener("click", () => open(current + 1));
-    lb.querySelector(".lb-prev").addEventListener("click", () => open(current - 1));
-    lb.addEventListener("click", (e) => { if (e.target === lb) close(); });
-    document.addEventListener("keydown", (e) => {
-      if (!lb.classList.contains("is-open")) return;
-      if (e.key === "Escape") close();
-      if (e.key === "ArrowRight") open(current + 1);
-      if (e.key === "ArrowLeft") open(current - 1);
+      lbCap.textContent = list[current].getAttribute('data-caption');
+      lbCount.textContent = current + 1 + ' of ' + list.length;
+    }
+    items.forEach(function (item) {
+      item.querySelector('button').addEventListener('click', function () {
+        show(visible().indexOf(item));
+        lb.showModal();
+        document.body.classList.add('is-locked');
+      });
+    });
+    lb.addEventListener('close', function () {
+      document.body.classList.remove('is-locked');
+    });
+    lb.querySelector('.lb-close').addEventListener('click', function () {
+      lb.close();
+    });
+    lb.querySelector('.lb-prev').addEventListener('click', function () {
+      show(current - 1);
+    });
+    lb.querySelector('.lb-next').addEventListener('click', function () {
+      show(current + 1);
+    });
+    lb.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') show(current - 1);
+      if (e.key === 'ArrowRight') show(current + 1);
+    });
+    lb.addEventListener('click', function (e) {
+      if (e.target === lb || e.target.classList.contains('lb-inner')) lb.close();
+    });
+    var sx = 0;
+    lb.addEventListener('touchstart', function (e) {
+      sx = e.touches[0].clientX;
+    }, { passive: true });
+    lb.addEventListener('touchend', function (e) {
+      var dx = e.changedTouches[0].clientX - sx;
+      if (Math.abs(dx) > 50) show(current + (dx < 0 ? 1 : -1));
     });
   }
 
-  /* ---------- Enquiry forms (open WhatsApp or email, nothing stored) ---------- */
-  document.querySelectorAll("form[data-enquiry]").forEach((form) => {
-    const note = form.querySelector(".form-note");
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      if (!form.reportValidity()) return;
-      const data = new FormData(form);
-      const lines = [form.dataset.enquiry];
-      for (const [key, value] of data.entries()) {
-        if (String(value).trim()) lines.push(`${key}: ${String(value).trim()}`);
-      }
-      const text = lines.join("\n");
-      const via = e.submitter && e.submitter.dataset.via;
-      if (via === "email") {
-        window.location.href = `mailto:${SCHOOL.email}?subject=${encodeURIComponent(form.dataset.enquiry)}&body=${encodeURIComponent(text)}`;
-      } else {
-        window.open(`https://wa.me/${SCHOOL.whatsapp}?text=${encodeURIComponent(text)}`, "_blank", "noopener");
-      }
-      if (note) note.textContent = "Your message is ready. Press send in WhatsApp or your email app to reach the school.";
-    });
-  });
-
-  /* ---------- Year ---------- */
-  document.querySelectorAll("[data-year]").forEach((el) => (el.textContent = new Date().getFullYear()));
+  var year = document.querySelector('[data-year]');
+  if (year) year.textContent = new Date().getFullYear();
 })();

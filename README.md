@@ -8,12 +8,12 @@ Plain HTML, CSS and JavaScript with no build step. `index.html` is the home page
 
 | File | Page |
 | --- | --- |
-| `index.html` | Home: video hero, classes, films, chess, graduation, campus, admissions |
-| `about.html` | Who we are, the crest, values, affirmations, school calendar |
-| `learning.html` | Creche, Pre-Nursery, Nursery, Primary, ways of learning, weekly facts |
-| `school-life.html` | Films, recent events, gallery preview |
-| `gallery.html` | Full photo gallery with filters and viewer |
-| `admissions.html` | Classes, steps to join, enquiry form, questions |
+| `index.html` | Home: video hero, classes, films, why families choose us, chess, moments, motto, admissions |
+| `about.html` | Our name, promise and motto, values, approach, teachers, careers |
+| `academics.html` | Creche, Pre-Nursery, Nursery, Primary, how we teach, enrichment, weekly facts |
+| `school-life.html` | Films, highlights, gallery preview |
+| `gallery.html` | Films and photos by occasion, with a full-size viewer |
+| `admissions.html` | Steps to join, classes, enquiry form, questions |
 | `contact.html` | Address, phones, WhatsApp, email, map, message form |
 | `404.html` | Page not found |
 
@@ -21,10 +21,10 @@ Plain HTML, CSS and JavaScript with no build step. `index.html` is the home page
 
 ```
 assets/css/style.css   all styles (colours from the crest are at the top)
-assets/js/main.js      menu, motion, films, gallery, forms
-assets/fonts/          Fraunces, Figtree and Cinzel (self-hosted)
+assets/js/main.js      menu, motion, videos, gallery, forms
+assets/fonts/          Instrument Serif, Instrument Sans and Cinzel (self-hosted)
 assets/video/          short silent loops cut from the school's Instagram reels
-assets/images/         photographs (WebP) from the school's Instagram and Facebook
+assets/images/         photographs (WebP, with -480 versions for phones) and the logo lockups
 assets/logo/mark.svg   the crest, redrawn as a sharp vector
 ```
 
