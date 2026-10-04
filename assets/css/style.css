@@ -793,10 +793,10 @@ em {
   display: flex;
   align-items: baseline;
   gap: 16px;
-  padding: 8px 0;
+  padding: 7px 0;
   font-family: var(--serif);
-  font-size: clamp(2.1rem, 8vw, 3rem);
-  line-height: 1.05;
+  font-size: clamp(1.6rem, 6.4vw, 1.9rem);
+  line-height: 1.1;
   color: var(--white);
   opacity: 0;
   transform: translateY(30px);
@@ -3771,4 +3771,9 @@ a:hover .frame--zoom img {
 .vm-card--sky .label i::before,
 .vm-card--sky .label i::after {
   background: #fff;
+}
+
+/* link under the map, in case the embed is slow or blocked */
+.map-link {
+  margin-top: 16px;
 }
